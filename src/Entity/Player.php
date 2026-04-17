@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Entité Doctrine : une ligne Player en base = un objet Player en PHP.
+ * Les attributs #[ORM\...] décrivent la table et les colonnes ; les getters/setters servent à lire / modifier les données.
+ */
 namespace App\Entity;
 
 use App\Repository\PlayerRepository;
@@ -8,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
 {
+    // Clé primaire auto-incrémentée par la base de données
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
