@@ -1,0 +1,11 @@
+<h1> Add player</h1>
+{# 
+<form action="{{ path('player_new')}}" method="POST">
+ <input type="text" id="name" name="name" required placeholder="le nom">
+ <input type="text" id="username" name="username" required placeholder="le username">
+ <input type="number" id="number" name="number" required placeholder="le numéro">
+ <button type="submit">add player</button>
+</form>
+  #}
+
+  {{form(formPlayer)}}

@@ -1,0 +1,11 @@
+<h1>page players</h1>
+{% for player in players %}
+    <article>
+        <h2>{{ player.name }} {{ player.username }}</h2>
+        <span>{{ player.age }}</span>
+        <a href="{{ path('player_show', { id : player.id }) }}">voir {{ player.name }}</a>
+        <a href="{{ path('player_update', { id : player.id }) }}">modifier {{ player.name }}</a>
+    </article>
+{% endfor %}
+
+<a href="{{ path('player_new') }}">créer un player</a> 
