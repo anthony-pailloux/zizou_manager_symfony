@@ -1,18 +1,18 @@
 <?php
 
-/**
- * Entité Doctrine : une ligne Player en base = un objet Player en PHP.
- * Les attributs #[ORM\...] décrivent la table et les colonnes ; les getters/setters servent à lire / modifier les données.
- */
 namespace App\Entity;
 
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Classe (le "moule") : décrit ce qu'est un Player.
+ * Une instance (un objet concret) = un joueur précis en mémoire, souvent une ligne en base.
+ */
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
 {
-    // Clé primaire auto-incrémentée par la base de données
+    // Propriétés en private : l'état de l'objet n'est modifié que via les méthodes (get / set) = encapsulation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -27,6 +27,10 @@ class Player
     #[ORM\Column]
     private ?int $age = null;
 
+    #[ORM\ManyToOne(inversedBy: 'players')]
+    private ?Team $Team = null;
+
+    // $this désigne "cet objet Player" sur lequel on appelle la méthode
     public function getId(): ?int
     {
         return $this->id;
@@ -41,7 +45,7 @@ class Player
     {
         $this->name = $name;
 
-        return $this;
+        return $this; // retourner $this permet d'enchaîner : $p->setName('')->setAge(20);
     }
 
     public function getUsername(): ?string
@@ -64,6 +68,18 @@ class Player
     public function setAge(int $age): static
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->Team;
+    }
+
+    public function setTeam(?Team $Team): static
+    {
+        $this->Team = $Team;
 
         return $this;
     }

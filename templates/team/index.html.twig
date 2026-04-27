@@ -1,0 +1,35 @@
+{# Page liste : chaque section affiche le résultat d’une méthode du TeamRepository (voir contrôleur) #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# Variable Twig : teams (boucle t pour ne pas confondre avec l’équipe seule "team" plus bas) #}
+    <h2>findAllTeam</h2>
+    {% for t in teams %}
+        <div>
+            <span>{{ t.name }}</span>
+            {% include 'team/form/_form.html.twig' with { team: t } %}
+        </div>
+    {% endfor %}
+
+    {# Résultat de findAllTeamsDesc #}
+    <h2>findAllTeamsDesc</h2>
+    {% for t in teamsDesc %}
+        <div>{{ t.name }}</div>
+    {% endfor %}
+
+    {# Une seule entité (ou null) : clé "team" passée par le contrôleur #}
+    <h2>findTeamById</h2>
+    {% if team %}
+        <div>{{ team.name }}</div>
+    {% else %}
+        <p>Pas d’équipe pour cet id.</p>
+    {% endif %}
+
+    {# for / else de Twig : le else s’affiche si le tableau est vide #}
+    <h2>findTeamByLetterAndLenght</h2>
+    {% for t in teamsLL %}
+        <div>{{ t.name }}</div>
+    {% else %}
+        <p>Aucun résultat.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,3 +1,8 @@
+{# player = objet Player passé par le contrôleur ; player.name appelle en réalité getName() #}
 <article>
     <span>{{ player.name }} {{ player.username }} {{ player.age }}</span>
+    <form action="{{ path('player_delete', { id: player.id }) }}" method="POST">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ player.id) }}">
+        <button type="submit">Supprimer</button>
+    </form>
 </article>

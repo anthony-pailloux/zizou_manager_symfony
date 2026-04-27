@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Accueil</h1>
+
+    <h2>Joueurs</h2>
+    <ul>
+        <li><a href="{{ path('player_index') }}">Liste</a></li>
+        <li><a href="{{ path('player_new') }}">Nouveau</a></li>
+        <li><a href="{{ path('player_show', { id: 1 }) }}">Fiche (id 1)</a></li>
+        <li><a href="{{ path('player_update', { id: 1 }) }}">Modifier (id 1)</a></li>
+    </ul>
+
+    <h2>Équipes</h2>
+    <ul>
+        <li><a href="{{ path('team_index') }}">Liste</a></li>
+        <li><a href="{{ path('team_new') }}">Nouveau</a></li>
+        <li><a href="{{ path('team_show', { id: 1 }) }}">Fiche (id 1)</a></li>
+        <li><a href="{{ path('team_update', { id: 1 }) }}">Modifier (id 1)</a></li>
+    </ul>
+{% endblock %}
